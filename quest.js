@@ -6,7 +6,9 @@ document.querySelector('#one').onclick= function(){
     qman.display();
 
 }
-
+document.querySelector('#starter').onclick =function (){
+    qman= new Qmanager(questions);
+}
 
 var qindex;
 var questions=[];
@@ -15,10 +17,17 @@ class Question{
        this.question= question;
        this.options=options;
        this.right=right; 
-       this.tags=tags;
-       questions.push(this);
+       if (tags ==null)
+            { this.tags= new Array;
+       
+            this.tags.push("");}
+        else
+                this.tags = tags;
 
-    }
+
+        questions.push(this);
+     
+    }//constructor
     show(){
         document.querySelector('#display').innerHTML= "<fieldset id='fs'> </fieldset>";
          
@@ -38,16 +47,29 @@ class Question{
 
 class Qmanager {
     constructor (questions){
-        this.questions=questions;
+       // this.questions=questions;
+        if (document.querySelector('#inputTag').value=="")
+            this.questions = questions;
+        else{
+            
+            alert("not empty");
+            this.questions = new Array;
+            for (var i = 0 ; i < questions.length; i ++){
+                if (questions[i].tags.includes(document.querySelector('#inputTag').value)      )
+                    this.questions.push(questions[i]);
+            }
+        }
+     
     }
 
     display(){
 
         qindex = parseInt(document.querySelector('#number').innerHTML);  
         if (qindex< this.questions.length){
-            this.questions[qindex].show();
-
-            document.querySelector('#number').innerHTML= qindex +1;
+            
+           
+                this.questions[qindex].show();
+               document.querySelector('#number').innerHTML= qindex +1;
         }//if
     }//display
     evaluate(){
@@ -82,14 +104,13 @@ class Qmanager {
     }
     }//Qmanager
 
-
 q1 = new Question('asdf?',['asdf', 'two'],[0,1]);
-q2 = new Question("5 * 10",["2","4","20"], [0,0,1]);
+q2 = new Question("5 * 10",["2","4","20"], [0,0,1],['math']);
 q3 = new Question('Burkina Fasso', ['Kampala','Ouagadougou','Lusaka'],[0,1,0], ['geo']);
-q4 = new Question ("למי יש 3? ",["רבוע","משולש"], [2] );
+q4 = new Question ("למי יש 3? ",["רבוע","משולש"], [0,1] ,['math']);
 
 
-qman= new Qmanager(questions);
+
 
 //document.querySelector('#formy').onsubmit = qman.evaluate();
 
