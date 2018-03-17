@@ -38,7 +38,7 @@ class Question{
             + element +"<br>";
             i++;         ;            
         });
-        document.querySelector('#fs').innerHTML += "<button onclick= 'qman.evaluate()'> submit </button>"
+        document.querySelector('#fs').innerHTML += "<br><button onclick= 'qman.evaluate()'> submit </button>"
     }
 
 
