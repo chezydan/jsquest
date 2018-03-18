@@ -39,9 +39,12 @@ p{ font-size: 2em; }
 
 /* Style the header */
 .header {
-  padding: 16px;
+  padding: 3px;
   text-align: center;
   background: #3c80e6;
   color: white;
 
+}
+.header p{
+  font-size: 1.3em;
 }
