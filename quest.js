@@ -51,8 +51,7 @@ class Qmanager {
         if (document.querySelector('#inputTag').value=="")
             this.questions = questions;
         else{
-            
-            alert("not empty");
+            //build questions obj acc to query in imput text
             this.questions = new Array;
             for (var i = 0 ; i < questions.length; i ++){
                 if (questions[i].tags.includes(document.querySelector('#inputTag').value)      )
@@ -73,8 +72,8 @@ class Qmanager {
         }//if
     }//display
     evaluate(){
-
-        var answerArr = new Array ;
+        //building answerArr
+        var answerArr = new Array ;  // carries answers from user
         var optionsGiven =  (document.getElementsByClassName('qc'));
         for (var i = 0 ; i < optionsGiven.length; i++){
             if (optionsGiven[i].checked)
@@ -85,10 +84,11 @@ class Qmanager {
         }
                                  
         
-        
-        document.querySelector('#resPanel').innerHTML=(answerArr+ "  " + questions[qindex].right);
-        document.querySelector('#resPanel').innerHTML+=this.compareArr(answerArr, questions[qindex].right);
+        // temp : displaying
+        document.querySelector('#resPanel').innerHTML=(answerArr+ "     right " +qindex +":"+ questions[qindex].right);
+        document.querySelector('#resPanel').innerHTML+=this.compareArr(answerArr,this.questions[qindex].right);
     }
+
 
     compareArr(ans, quest){
         var response = true;
